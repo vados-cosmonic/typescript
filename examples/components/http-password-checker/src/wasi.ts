@@ -103,5 +103,5 @@ export async function sendResponse(
   // Finish the response body
   OutgoingBody.finish(outgoingBody, undefined);
   // Set the created response
-  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
+  ResponseOutparam.set(resp, { tag: 'ok', val: outgoingResponse });
 }

@@ -16,7 +16,7 @@ import {
   Fields,
 } from 'wasi:http/types@0.2.3';
 
-import {getRandomBytes} from 'wasi:random/random@0.2.3';
+import { getRandomBytes } from 'wasi:random/random@0.2.3';
 
 /**
  * Generate random data to send over the write as our streaming workload
@@ -90,7 +90,7 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
 
   outgoingResponse.setStatusCode(200);
   OutgoingBody.finish(outgoingBody, undefined);
-  ResponseOutparam.set(resp, {tag: 'ok', val: outgoingResponse});
+  ResponseOutparam.set(resp, { tag: 'ok', val: outgoingResponse });
 }
 
 export const incomingHandler = {

@@ -46,7 +46,11 @@ app.get('/', (c) =>
 
 app.get('/health', (c) => {
   log('trace', 'routes', `health check requestId=${c.get('requestId')}`);
-  return c.json({ status: 'healthy', timestamp: new Date().toISOString(), requestId: c.get('requestId') });
+  return c.json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    requestId: c.get('requestId'),
+  });
 });
 
 app.notFound((c) => {

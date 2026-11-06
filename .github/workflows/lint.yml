@@ -1,7 +1,8 @@
 name: Lint
 
 # Lints the examples, templates and scripts with the repository's ESLint config
-# (eslint.config.mjs), on every pull request and push to main.
+# (eslint.config.mjs) and checks their formatting with Prettier,
+# on every pull request and push to main.
 # The tooling is the root package.json; templates don't carry it.
 
 on:
@@ -38,3 +39,7 @@ jobs:
 
       - name: ESLint
         run: npm run lint
+
+      - name: Prettier
+        if: ${{ !cancelled() }}
+        run: npm run format

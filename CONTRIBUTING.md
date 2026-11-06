@@ -110,7 +110,11 @@ Run it from the repository root:
 npm ci
 npm run lint
 npm run lint:fix  # fix what can be fixed automatically
+npm run format:fix  # format with Prettier
 ```
+
+[Prettier](.prettierrc.json) formats the TypeScript and JavaScript sources,
+and the Lint workflow fails if `npm run format` finds a file it would change.
 
 The root `package.json` is repository tooling only:
 `wash new` copies a template's own directory, so new projects don't inherit it.
@@ -250,7 +254,7 @@ are also checked against the [security self-assessment](SECURITY_ASSESSMENT.md).
 
 ### PR Checklist
 
-- [ ] Code follows project style guidelines and `npm run lint` passes
+- [ ] Code follows project style guidelines, and `npm run lint` and `npm run format` pass
 - [ ] Self-review completed
 - [ ] New examples or templates added to the CI matrix
 - [ ] Documentation updated if needed

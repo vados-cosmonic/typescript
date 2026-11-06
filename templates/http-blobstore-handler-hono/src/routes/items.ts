@@ -2,7 +2,11 @@ import { Hono } from 'hono';
 import { HTTPException } from 'hono/http-exception';
 import { z } from 'zod/mini';
 
-import { getContainer, createContainer, containerExists } from 'wasi:blobstore/blobstore@0.2.0-draft';
+import {
+  getContainer,
+  createContainer,
+  containerExists,
+} from 'wasi:blobstore/blobstore@0.2.0-draft';
 import { OutgoingValue, IncomingValue } from 'wasi:blobstore/types@0.2.0-draft';
 
 // Validation schemas

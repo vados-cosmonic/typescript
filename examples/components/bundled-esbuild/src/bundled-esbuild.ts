@@ -1,5 +1,5 @@
-import {InputData} from 'wasmcloud:hello/data-utils';
-import {XMLParser} from 'fast-xml-parser';
+import { InputData } from 'wasmcloud:hello/data-utils';
+import { XMLParser } from 'fast-xml-parser';
 import * as R from 'remeda';
 
 interface Item {
