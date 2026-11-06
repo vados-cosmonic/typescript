@@ -18,7 +18,7 @@ const updateItemSchema = z.object({
 
 // Types
 type CreateItemInput = z.infer<typeof createItemSchema>;
-type UpdateItemInput = z.infer<typeof updateItemSchema>;
+type Container = ReturnType<typeof getContainer>;
 
 interface Item extends Required<CreateItemInput> {
   id: string;
@@ -54,7 +54,7 @@ function ensureContainer(name: string) {
 }
 
 /** Write bytes to a blob in the given container. */
-function writeBlob(container: any, name: string, bytes: Uint8Array): void {
+function writeBlob(container: Container, name: string, bytes: Uint8Array): void {
   const ov = OutgoingValue.newOutgoingValue();
   const stream = ov.outgoingValueWriteBody();
   stream.blockingWriteAndFlush(bytes);
@@ -63,14 +63,14 @@ function writeBlob(container: any, name: string, bytes: Uint8Array): void {
 }
 
 /** Read a blob from the given container, returning the bytes. */
-function readBlob(container: any, name: string): Uint8Array {
+function readBlob(container: Container, name: string): Uint8Array {
   const metadata = container.objectInfo(name);
   const iv = container.getData(name, 0n, metadata.size - 1n);
   return IncomingValue.incomingValueConsumeSync(iv);
 }
 
 /** List all object names in the given container. */
-function listObjectNames(container: any): string[] {
+function listObjectNames(container: Container): string[] {
   const stream = container.listObjects();
   const names: string[] = [];
   while (true) {
@@ -81,9 +81,9 @@ function listObjectNames(container: any): string[] {
   return names;
 }
 
-type Variables = {
+interface Variables {
   requestId: string;
-};
+}
 
 const itemsRouter = new Hono<{ Variables: Variables }>();
 

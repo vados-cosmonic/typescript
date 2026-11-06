@@ -42,18 +42,18 @@ function handle(req: IncomingRequest, resp: ResponseOutparam) {
   const outgoingResponse = new OutgoingResponse(new Fields());
 
   // Access the outgoing response body
-  let outgoingBody = outgoingResponse.body();
-  let outputStream = outgoingBody.write();
+  const outgoingBody = outgoingResponse.body();
+  const outputStream = outgoingBody.write();
 
   // Generate data to send out
   //
   // The amount to send is arbitrarily chosen, but over 4096 to make
   // things more interesting than using `wasi:io/streams.blocking-write-and-flush`
-  let text = generateData(1024n * 1024n);
-  let data = new Uint8Array(new TextEncoder().encode(text));
+  const text = generateData(1024n * 1024n);
+  const data = new Uint8Array(new TextEncoder().encode(text));
 
   // Retrieve a Preview 2 I/O pollable to coordinate writing to the output stream
-  let pollable = outputStream.subscribe();
+  const pollable = outputStream.subscribe();
   let written = 0n;
   let remaining = BigInt(data.length);
   while (remaining > 0) {

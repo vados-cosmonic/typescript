@@ -28,11 +28,11 @@ export const incomingHandler = {
     }
 
     // Parse out the request path
-    let [path, maybeQuery] = (req.pathWithQuery() ?? '').split('?');
+    const [path] = (req.pathWithQuery() ?? '').split('?');
 
     // Handle request
     switch (path) {
-      case '/api/v1/check':
+      case '/api/v1/check': {
         // Parse the check request from the body
         let cr: PasswordCheckRequest;
         try {
@@ -40,7 +40,7 @@ export const incomingHandler = {
         } catch (err) {
           const msg = v.isValiError(err)
             ? `[${err.issues.join(',')}]`
-            : ((err as any).payload ?? err?.toString() ?? 'unexpected error while parsing request');
+            : ((err as { payload?: string }).payload ?? err?.toString() ?? 'unexpected error while parsing request');
           return await sendResponseJSON(resp, 400, {
             status: 'error',
             message: `invalid request body: ${msg}`,
@@ -60,6 +60,7 @@ export const incomingHandler = {
         }
 
         break;
+      }
 
       default:
         await sendResponseJSON(

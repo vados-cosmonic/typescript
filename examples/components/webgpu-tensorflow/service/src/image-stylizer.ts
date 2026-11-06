@@ -68,6 +68,8 @@ export class Stylizer {
             tf.loadGraphModel(
                 tf.io.fromMemory({
                     modelTopology: model_style_model_json.modelTopology,
+                    // The model JSON's weights manifest is untyped.
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     weightSpecs: model_style_model_json.weightsManifest.flatMap((g: any) => g.weights),
                     weightData: STYLE_WEIGHT_DATA,
                 })
@@ -75,6 +77,8 @@ export class Stylizer {
             tf.loadGraphModel(
                 tf.io.fromMemory({
                     modelTopology: model_transformer_model_json.modelTopology,
+                    // The model JSON's weights manifest is untyped.
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     weightSpecs: model_transformer_model_json.weightsManifest.flatMap((g: any) => g.weights),
                     weightData: TRANSFORMER_WEIGHT_DATA,
                 })

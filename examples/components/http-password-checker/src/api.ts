@@ -37,13 +37,14 @@ export class PasswordCheckRequest {
   /** Parse a PasswordCheckRequest from a wasi:http `IncomingRequest` */
   static async fromRequest(req: IncomingRequest): Promise<PasswordCheckRequest> {
     try {
-      let bytes = readInputStream(req.consume().stream());
-      let obj = JSON.parse(new TextDecoder('utf8').decode(bytes));
+      const bytes = readInputStream(req.consume().stream());
+      const obj = JSON.parse(new TextDecoder('utf8').decode(bytes));
       const parsed = v.parse(PasswordCheckRequest.schema(), obj);
       return new PasswordCheckRequest(parsed.value);
     } catch (err) {
       throw new Error(
         `failed to parse incoming data as a PasswordCheckRequest: ${err?.toString()}`,
+        { cause: err },
       );
     }
   }

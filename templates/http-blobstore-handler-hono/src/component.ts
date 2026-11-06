@@ -9,9 +9,9 @@ import { itemsRouter } from './routes/items.js';
 import { echoRouter } from './routes/echo.js';
 
 // Hono context variables type
-type Variables = {
+interface Variables {
   requestId: string;
-};
+}
 
 // Create the main app with typed variables
 const app = new Hono<{ Variables: Variables }>();

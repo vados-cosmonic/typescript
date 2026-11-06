@@ -105,11 +105,11 @@ export const isSharedArrayBuffer = (
 ) =>
   "SharedArrayBuffer" in globalThis && val instanceof SharedArrayBuffer;
 
-export const isProxy = (val) => {
+export const isProxy = (_val) => {
   throw new Error("Not implemented");
 };
 
-export const isModuleNamespaceObject = (val) => {
+export const isModuleNamespaceObject = (_val) => {
   throw new Error("Not implemented");
 };
 
@@ -196,7 +196,7 @@ export const isBigUint64Array = (
   val,
 ) => val instanceof BigUint64Array;
 
-export const isKeyObject = (val) => {
+export const isKeyObject = (_val) => {
   throw new Error("Not implemented");
 };
 

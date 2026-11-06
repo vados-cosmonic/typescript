@@ -9,9 +9,9 @@ function headersToObject(headers: Headers): Record<string, string> {
   return obj;
 }
 
-type Variables = {
+interface Variables {
   requestId: string;
-};
+}
 
 const echoRouter = new Hono<{ Variables: Variables }>();
 

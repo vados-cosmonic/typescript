@@ -4,6 +4,8 @@
 // TextEncoder/TextDecoder: UTF-8 is all we need.
 if (typeof globalThis.TextEncoder === "undefined") {
     globalThis.TextEncoder = class TextEncoder {
+        // An accessor, as in the web API.
+        // eslint-disable-next-line @typescript-eslint/class-literal-property-style
         get encoding() {
             return "utf-8";
         }
@@ -36,6 +38,8 @@ if (typeof globalThis.TextEncoder === "undefined") {
 }
 if (typeof globalThis.TextDecoder === "undefined") {
     globalThis.TextDecoder = class TextDecoder {
+        // An accessor, as in the web API.
+        // eslint-disable-next-line @typescript-eslint/class-literal-property-style
         get encoding() {
             return "utf-8";
         }

@@ -2,10 +2,10 @@ import {InputData} from 'wasmcloud:hello/data-utils';
 import {XMLParser} from 'fast-xml-parser';
 import * as R from 'remeda';
 
-type Item = {
+interface Item {
   title: string;
   score: number;
-};
+}
 
 async function calculateScore(data: InputData): Promise<number> {
   let json: Item[] = [];
